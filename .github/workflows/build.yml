@@ -1,0 +1,40 @@
+name: "Build & Upload"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build_upload:
+    permissions:
+        contents: "write"
+        packages: "write"
+        pull-requests: "read"
+    runs-on: windows-latest
+    steps:
+        - uses: actions/checkout@v4
+
+        - name: Stage 1 Gathering Dependencies
+          shell: bash
+          working-directory: builder
+          run: bash stage1.sh
+
+        - name: Stage 2 Assembling Repositories
+          shell: bash
+          working-directory: builder
+          run: bash stage2.sh
+
+        - name: Stage 3 Compressing Package
+          shell: bash
+          working-directory: builder
+          run: bash stage3.sh
+
+        - name: Upload archive to release
+          uses: xresloader/upload-to-github-release@v1
+          env:
+            # You don't need to configure this token. It'll be auto-set when GitHub Actions start.
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            file: "builder/Hunyuan3D2_WinPortable.7z*"
+            # Always draft before release.
+            draft: true
+            overwrite: true
