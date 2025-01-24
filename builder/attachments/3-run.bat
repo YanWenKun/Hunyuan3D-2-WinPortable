@@ -19,4 +19,5 @@ set HF_HUB_CACHE=%~dp0\HuggingFaceHub
 cd Hunyuan3D-2
 ..\python_standalone\python.exe -s gradio_app.py
 
+cd ..
 pause

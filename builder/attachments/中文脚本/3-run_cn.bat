@@ -25,4 +25,5 @@ set HF_ENDPOINT=https://hf-mirror.com
 cd Hunyuan3D-2
 ..\python_standalone\python.exe -s gradio_app.py
 
+cd ..
 pause

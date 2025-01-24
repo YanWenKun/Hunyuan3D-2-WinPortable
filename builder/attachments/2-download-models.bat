@@ -1,6 +1,11 @@
+@echo off
+setlocal
+
 @REM Download and copy u2net.onnx to user's home path, if needed.
 IF NOT EXIST "%USERPROFILE%\.u2net\u2net.onnx" (
     IF NOT EXIST ".\extras\u2net.onnx" (
+        echo "Downloading u2net.onnx..."
+
         .\python_standalone\Scripts\aria2c.exe --allow-overwrite=false ^
         --auto-file-renaming=false --continue=true ^
         -d ".\extras" -o "u2net.tmp" ^
@@ -23,7 +28,7 @@ rem set HF_HUB_ENABLE_HF_TRANSFER=1
 @REM To set mirror site for HuggingFace Hub, uncomment and edit the line below.
 rem set HF_ENDPOINT=https://hf-mirror.com
 
-@REM To set mirror site for PIP, uncomment and edit the two lines below.
+@REM To set mirror site for PIP, uncomment and edit the line below.
 rem set PIP_INDEX_URL=https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 
 set HF_HUB_CACHE=%~dp0\HuggingFaceHub
@@ -42,3 +47,6 @@ if not exist ".\python_standalone\Scripts\.hf-reinstalled" (
 
 @REM Download models for Text to 3D
 rem .\python_standalone\Scripts\huggingface-cli.exe download "Tencent-Hunyuan/HunyuanDiT-v1.1-Diffusers-Distilled"
+
+endlocal
+pause
