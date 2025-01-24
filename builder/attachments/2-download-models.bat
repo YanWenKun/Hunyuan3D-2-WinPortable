@@ -4,7 +4,7 @@ setlocal
 @REM Download and copy u2net.onnx to user's home path, if needed.
 IF NOT EXIST "%USERPROFILE%\.u2net\u2net.onnx" (
     IF NOT EXIST ".\extras\u2net.onnx" (
-        echo "Downloading u2net.onnx..."
+        echo Downloading u2net.onnx...
 
         .\python_standalone\Scripts\aria2c.exe --allow-overwrite=false ^
         --auto-file-renaming=false --continue=true ^
@@ -37,16 +37,21 @@ set PATH=%PATH%;%~dp0\python_standalone\Scripts
 
 @REM Reinstall hf-hub
 if not exist ".\python_standalone\Scripts\.hf-reinstalled" (
+    echo Reinstalling huggingface-hub...
     .\python_standalone\python.exe -s -m pip uninstall --yes huggingface-hub
     .\python_standalone\python.exe -s -m pip install "huggingface-hub[hf-transfer]"
-    echo.> ".\python_standalone\Scripts\.hf-reinstalled"
+    if %errorlevel% equ 0 (
+        echo.> ".\python_standalone\Scripts\.hf-reinstalled"
+    )
 )
 
-@REM Download Hunyuan3D-2 from HuggingFace
+echo Downloading Hunyuan3D-2 models from HuggingFace...
 .\python_standalone\Scripts\huggingface-cli.exe download "tencent/Hunyuan3D-2"
 
 @REM Download models for Text to 3D
 rem .\python_standalone\Scripts\huggingface-cli.exe download "Tencent-Hunyuan/HunyuanDiT-v1.1-Diffusers-Distilled"
+
+echo The script has finished executing. If any files are incomplete, please rerun the script.
 
 endlocal
 pause
