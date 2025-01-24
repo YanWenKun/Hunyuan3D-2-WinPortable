@@ -1,6 +1,3 @@
-@REM 使用国内镜像站点
-set HF_ENDPOINT=https://hf-mirror.com
-
 @REM 按需下载并复制 u2net.onnx 到用户主目录下
 IF NOT EXIST "%USERPROFILE%\.u2net\u2net.onnx" (
     IF NOT EXIST ".\extras\u2net.onnx" (
@@ -23,9 +20,22 @@ IF NOT EXIST "%USERPROFILE%\.u2net\u2net.onnx" (
 @REM https://huggingface.co/docs/huggingface_hub/hf_transfer
 rem set HF_HUB_ENABLE_HF_TRANSFER=1
 
+@REM 使用国内镜像站点
+set HF_ENDPOINT=https://hf-mirror.com
+
+@REM 使用清华 PyPI 源
+set PIP_INDEX_URL=https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+
 set HF_HUB_CACHE=%~dp0\HuggingFaceHub
 
 set PATH=%PATH%;%~dp0\python_standalone\Scripts
+
+@REM 重新安装 hf-hub
+if not exist ".\python_standalone\Scripts\.hf-reinstalled" (
+    .\python_standalone\python.exe -s -m pip uninstall --yes huggingface-hub
+    .\python_standalone\python.exe -s -m pip install "huggingface-hub[hf-transfer]"
+    echo.> ".\python_standalone\Scripts\.hf-reinstalled"
+)
 
 @REM 下载 Hunyuan3D-2 模型
 .\python_standalone\Scripts\huggingface-cli.exe download "tencent/Hunyuan3D-2"

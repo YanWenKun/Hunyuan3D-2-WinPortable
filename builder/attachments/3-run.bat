@@ -5,14 +5,14 @@ rem set HTTPS_PROXY=http://localhost:1080
 @REM ===========================================================================
 @REM These settings usually don't need change.
 
-@REM This command redirects HuggingFace-Hub to download model files in this folder.
-set HF_HUB_CACHE=%~dp0\HuggingFaceHub
-
 @REM This command will set PATH environment variable.
 set PATH=%PATH%;%~dp0\python_standalone\Scripts
 
 @REM This command will let the .pyc files to be stored in one place.
 set PYTHONPYCACHEPREFIX=%~dp0\pycache
+
+@REM This command redirects HuggingFace-Hub to download model files in this folder.
+set HF_HUB_CACHE=%~dp0\HuggingFaceHub
 
 @REM ===========================================================================
 
