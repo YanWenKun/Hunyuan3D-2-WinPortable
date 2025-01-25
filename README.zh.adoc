@@ -156,7 +156,7 @@ https://github.com/deepbeepmeep/mmgp[mmgp]
 https://github.com/deepbeepmeep/Hunyuan3D-2GP[Hunyuan3D-2GP]，
 为低显存用户带来了可能。
 
-## 顺便一提
+## 顺带一提
 
 我的相关项目：
 
