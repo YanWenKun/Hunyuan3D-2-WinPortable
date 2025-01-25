@@ -1,0 +1,156 @@
+# Hunyuan3D-2 Windows Portable
+
+[.text-center]
+English | *link:README.zh.adoc[中文说明]*
+
+A dedicated package for running
+https://github.com/Tencent/Hunyuan3D-2[Hunyuan3D 2.0]
+Gradio Web App (official demo) on Windows.
+
+## How to Use - Generate Shape Only
+
+image::docs/sc-white-mesh.webp["Screenshot"]
+
+The simplest way to experience Hunyuan3D-2.
+Input an image, and you'll get a 3D model (white mesh).
+
+. Requirements:
+** NVIDIA GPU with at least 6GB of VRAM (4GB may work but will be very slow). 
+** GPU driver version must be newer than March 2024 (version >550).
+
+. Download
+https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v1/Hunyuan3D2_WinPortable.7z[Hunyuan3D2_WinPortable.7z],
+and extract it to a convenient location.
+
+. Run `2-download-models.bat` and wait for the download to complete (~26GB).
+
+. Run `3-run.bat`, ignore error messages about `EP Error`. Wait for the info message:
+
+ Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+
+. Open http://localhost:8080/ in your browser. Enjoy!
+
+. Output files will be saved in `Hunyuan3D-2\gradio_cache`.
+
+Other options:
+
+* If your GPU has less than 6GB VRAM, use `run-very_low_vram.bat`.
+
+##  How to Use - Generate Shape and Texture
+
+image::docs/sc-textured-mesh.webp["Screenshot"]
+
+Generating textures requires a few additional steps.
+
+. Requirements:
+** NVIDIA GPU with at least 8GB of VRAM (6GB may work but will be very slow). 
+** GPU driver version must be newer than March 2024 (version >550).
+** Minimum 24GB of system RAM.
+
+. Install 
+https://developer.nvidia.com/cuda-12-4-1-download-archive?target_os=Windows&target_arch=x86_64&target_version=11&target_type=exe_network[CUDA Toolkit 12.4.1].
+
+** Only
+https://github.com/YanWenKun/Comfy3D-WinPortable/raw/refs/heads/main/docs/cuda-toolkit-install-selection.webp[Libraries and Compilers]
+are needed to install.
+
+. Install Visual Studio Build Tools 2022
+(
+https://visualstudio.microsoft.com/visual-cpp-build-tools/[Page]
+|
+https://aka.ms/vs/17/release/vs_BuildTools.exe[EXE]
+).
+
+** During setup, select the "Desktop development with C++" workload.
+
+. Download and extract 
+https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v1/Hunyuan3D2_WinPortable.7z[Hunyuan3D2_WinPortable.7z].
+Or check for newer versions at
+https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases[releases page].
+
+. Run `update.bat` to ensure you have the latest code.
+
+. Run `1-compile-install-texture-gen.bat`, wait for the installation to finish.
+
+. Run `2-download-models.bat` to download necessary models (~26GB).
+
+. Run `3-run.bat`. When ready, the following message will appear:
+
+ Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+
+** If you see `EP Error: Can't load TensorRT`, the app will automatically fallback to CUDA. This error can be safely ignored.
+
+. Open http://localhost:8080/ in your browser.
+
+. Output files will be saved in `Hunyuan3D-2\gradio_cache`.
+
+Other options:
+
+* Use `run-very_low_vram.bat` if your GPU has less than 8GB VRAM.
+
+## How to use - Text to 3D
+
+image::docs/sc-text-to-3d.webp["Screenshot"]
+
+The Text to 3D feature combines:
+(1) Text to Image
+(2) Image to 3D.
+For an experienced user, it might not be worth downloading another Text-to-Image model. So this feature is disabled by default.
+
+But if you want to (the HunyuanDiT model works great), you can have it enabled once `2-download-models.bat` is complete, no matter Texture Generation is enabled or not.
+
+Run `run-with-text_to_3d.bat`. This will download the required models (~13.4GB) and start the app.
+If download fails, just run the script again.
+
+## Tips
+
+. The "Remove Background" feature uses `rembg` with default settings, which may leave faint white edges. Turn it off if your images already have clean alpha channels.
+
+. I have 24GB VRAM! Let the app use more!
+
+** Edit `run-very_low_vram.bat`, replace `--profile 5` with `--profile 1`.
+** Beneath this argument, is the
+https://github.com/deepbeepmeep/Hunyuan3D-2GP[Hunyuan3D-2GP]
+made by
+https://github.com/deepbeepmeep[DeepBeepMeep].
+** You can find more detail about profile level on
+https://github.com/deepbeepmeep/mmgp#usage[mmgp manual].
+
+. To update:
+
+** Run `update.bat`.
+** Note: This package uses a
+https://github.com/YanWenKun/Hunyuan3D-2[customized fork] of Hunyuan3D 2.0, maintained by me, which might not always be up-to-date.
+
+. Need to set a proxy for Internet access?
+
+** Add the following lines on top to any script you run into issues with, adjusting for your proxy server:
+
+```
+set HTTP_PROXY=http://localhost:1080
+set HTTPS_PROXY=http://localhost:1080
+
+```
+
+
+## Thanks
+
+* Special thanks to the researchers, developers, and all contributors of
+https://github.com/Tencent/Hunyuan3D-2[Hunyuan3D 2.0].
+
+* Kudos to
+https://github.com/deepbeepmeep[DeepBeepMeep]
+for creating
+https://github.com/deepbeepmeep/mmgp[mmgp]
+and
+https://github.com/deepbeepmeep/Hunyuan3D-2GP[Hunyuan3D-2GP],
+bringing Hunyuan3D 2.0 to less-capable GPUs.
+
+## More
+
+Explore my other projects:
+
+* https://github.com/YanWenKun/Comfy3D-WinPortable[Comfy3D-WinPortable] - Run ComfyUI-3D-Pack on Windows.
+* https://github.com/YanWenKun/StableFast3D-WinPortable[StableFast3D-WinPortable] - Run SF3D on Windows.
+* https://github.com/YanWenKun/ComfyUI-Windows-Portable[ComfyUI-Windows-Portable] - A ComfyUI bundle with 40+ custom nodes.
+* https://github.com/YanWenKun/ComfyUI-Docker[ComfyUI-Docker] - Run ComfyUI in containers.
