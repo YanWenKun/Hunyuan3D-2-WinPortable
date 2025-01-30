@@ -1,7 +1,7 @@
-# Hunyuan3D-2 Windows Portable
-
 [.text-center]
 English | *link:README.zh.adoc[中文说明]*
+
+# Hunyuan3D-2 Windows Portable
 
 A dedicated package for running
 https://github.com/Tencent/Hunyuan3D-2[Hunyuan3D 2.0]
@@ -19,7 +19,7 @@ Input an image, and you'll get a 3D model (white mesh).
 ** GPU driver version must be newer than March 2024 (version >550).
 
 . Download
-https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v1/Hunyuan3D2_WinPortable.7z[Hunyuan3D2_WinPortable.7z],
+https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v1/Hunyuan3D2_WinPortable.7z[Hunyuan3D2_WinPortable.7z]
 and extract it to a convenient location.
 
 . Run `2-download-models.bat` and wait for the download to complete (~26GB).
@@ -35,6 +35,8 @@ and extract it to a convenient location.
 Other options:
 
 * If your GPU has less than 6GB VRAM, use `run-very_low_vram.bat`.
+
+* If you want to generate textures as well, see the instructions below.
 
 ##  How to Use - Generate Shape and Texture
 
@@ -95,12 +97,15 @@ image::docs/sc-text-to-3d.webp["Screenshot"]
 The Text to 3D feature combines:
 (1) Text to Image
 (2) Image to 3D.
-For an experienced user, it might not be worth downloading another Text-to-Image model. So this feature is disabled by default.
+For an experienced user, it might not be worth downloading another Text-to-Image model. Therefore, this feature is disabled by default. However, you can easily enable it:
 
-But if you want to (the HunyuanDiT model works great), you can have it enabled once `2-download-models.bat` is complete, no matter Texture Generation is enabled or not.
+* After the `2-download-models.bat` script completes, run `run-with-text_to_3d.bat`. 
+This will download the required models (~13.4GB) and start the app. 
+If the download fails, simply re-run the script.
 
-Run `run-with-text_to_3d.bat`. This will download the required models (~13.4GB) and start the app.
-If download fails, just run the script again.
+* Texture Generation feature is optional for Text-to-3D. You can always get a white mesh without installing texgen.
+
+By the way, the HunyuanDiT model works great for this purpose.
 
 ## Tips
 
