@@ -6,7 +6,7 @@ rem set HTTPS_PROXY=http://localhost:1080
 @REM 该部分设置一般无需更改
 
 @REM 该命令配置 PATH 环境变量。
-set PATH=%PATH%;%~dp0\python_standalone\Scripts
+set PATH=%PATH%;%~dp0\MinGit\cmd;%~dp0\python_standalone\Scripts
 
 @REM 该环境变量使 .pyc 缓存文件集中保存在一个文件夹下，而不是随 .py 文件分布。
 set PYTHONPYCACHEPREFIX=%~dp0\pycache

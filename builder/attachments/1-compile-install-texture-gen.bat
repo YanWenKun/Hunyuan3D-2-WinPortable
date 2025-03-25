@@ -4,7 +4,7 @@ setlocal
 @REM To set mirror site for PIP, uncomment and edit the line below.
 rem set PIP_INDEX_URL=https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 
-set PATH=%PATH%;%~dp0\python_standalone\Scripts
+set PATH=%PATH%;%~dp0\MinGit\cmd;%~dp0\python_standalone\Scripts
 
 echo Compile-installing custom_rasterizer...
 

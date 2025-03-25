@@ -33,7 +33,7 @@ set PIP_INDEX_URL=https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 
 set HF_HUB_CACHE=%~dp0\HuggingFaceHub
 
-set PATH=%PATH%;%~dp0\python_standalone\Scripts
+set PATH=%PATH%;%~dp0\MinGit\cmd;%~dp0\python_standalone\Scripts
 
 @REM 重新安装 hf-hub
 if not exist ".\python_standalone\Scripts\.hf-reinstalled" (

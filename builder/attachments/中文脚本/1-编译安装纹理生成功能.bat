@@ -4,7 +4,7 @@ setlocal
 @REM 使用清华 PyPI 源
 set PIP_INDEX_URL=https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 
-set PATH=%PATH%;%~dp0\python_standalone\Scripts
+set PATH=%PATH%;%~dp0\MinGit\cmd;%~dp0\python_standalone\Scripts
 
 echo 编译安装 custom_rasterizer...
 

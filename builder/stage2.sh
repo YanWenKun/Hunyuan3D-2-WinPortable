@@ -16,6 +16,12 @@ mkdir -p "${HF_HUB_CACHE}"
 # Relocate python_standalone
 mv  "$workdir"/python_standalone  "$workdir"/Hunyuan3D2_WinPortable/python_standalone
 
+# Add MinGit (Portable Git)
+curl -sSL https://github.com/git-for-windows/git/releases/download/v2.49.0.windows.1/MinGit-2.49.0-64-bit.zip \
+    -o MinGit.zip
+unzip -q MinGit.zip -d "$workdir"/Hunyuan3D2_WinPortable/MinGit
+rm MinGit.zip
+
 # Download Hunyuan3D-2
 cd "$workdir"/Hunyuan3D2_WinPortable/
 $gcs https://github.com/YanWenKun/Hunyuan3D-2.git
