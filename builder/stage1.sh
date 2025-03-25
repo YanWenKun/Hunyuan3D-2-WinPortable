@@ -15,7 +15,7 @@ ls -lahF
 # Download Python Standalone
 cd "$workdir"
 curl -sSL \
-https://github.com/astral-sh/python-build-standalone/releases/download/20250212/cpython-3.12.9+20250212-x86_64-pc-windows-msvc-shared-install_only.tar.gz \
+https://github.com/astral-sh/python-build-standalone/releases/download/20250317/cpython-3.12.9+20250317-x86_64-pc-windows-msvc-install_only.tar.gz \
     -o python.tar.gz
 tar -zxf python.tar.gz
 mv python python_standalone
@@ -43,7 +43,7 @@ mv "$workdir"/aria2/*/aria2c.exe  "$workdir"/python_standalone/Scripts/
 rm aria2.zip
 
 # Add FFmpeg binary
-curl -sSL https://github.com/GyanD/codexffmpeg/releases/download/7.1/ffmpeg-7.1-full_build.zip \
+curl -sSL https://github.com/GyanD/codexffmpeg/releases/download/7.1.1/ffmpeg-7.1.1-full_build.zip \
     -o ffmpeg.zip
 unzip -q ffmpeg.zip -d "$workdir"/ffmpeg
 mv "$workdir"/ffmpeg/*/bin/ffmpeg.exe  "$workdir"/python_standalone/Scripts/
