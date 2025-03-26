@@ -6,6 +6,15 @@ set PIP_INDEX_URL=https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 
 set PATH=%PATH%;%~dp0\MinGit\cmd;%~dp0\python_standalone\Scripts
 
+echo 编译安装 DISO...
+
+.\python_standalone\python.exe -s -m pip install diso
+
+if %errorlevel% neq 0 (
+    echo 编译安装 DISO 失败！
+    goto :end
+)
+
 echo 编译安装 custom_rasterizer...
 
 .\python_standalone\python.exe -s -m pip install .\Hunyuan3D-2\hy3dgen\texgen\custom_rasterizer

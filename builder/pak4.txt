@@ -1,5 +1,4 @@
 ConfigArgParse
-diso
 facexlib
 fastapi
 gevent
