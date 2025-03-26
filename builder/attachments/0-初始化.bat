@@ -41,7 +41,7 @@ if errorlevel 1 (
 
 start /d .\zh-cn init.bat
 
-echo 操作成功完成！
+echo 已在新窗口执行脚本，可关闭本窗口
 
 popd
 

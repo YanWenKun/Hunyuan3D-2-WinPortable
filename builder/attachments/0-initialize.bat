@@ -35,7 +35,7 @@ if errorlevel 1 (
 
 start /d .\en-us init.bat
 
-echo Init operation completed successfully!
+echo The script has been executed in a new window. You may safely close this window.
 
 popd
 
