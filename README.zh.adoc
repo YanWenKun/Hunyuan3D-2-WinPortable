@@ -156,6 +156,12 @@ https://github.com/deepbeepmeep/mmgp[mmgp]
 https://github.com/deepbeepmeep/Hunyuan3D-2GP[Hunyuan3D-2GP]，
 为低显存用户带来了可能。
 
+* 特别感谢国内镜像站点提供的下载服务：
+** https://hf-mirror.com
+** https://mirrors.cernet.edu.cn
+** https://ghfast.top
+** https://gh-proxy.com
+
 ## 顺带一提
 
 我的相关项目：
@@ -163,4 +169,5 @@ https://github.com/deepbeepmeep/Hunyuan3D-2GP[Hunyuan3D-2GP]，
 * https://github.com/YanWenKun/Comfy3D-WinPortable[Comfy3D-WinPortable] - ComfyUI-3D-Pack 的 Windows 整合包
 * https://github.com/YanWenKun/StableFast3D-WinPortable[StableFast3D-WinPortable] - SF3D 的 Windows 整合包
 * https://github.com/YanWenKun/ComfyUI-Windows-Portable[ComfyUI-Windows-Portable] - 预装了 40+ 扩展的 ComfyUI Windows 整合包
+* https://github.com/YanWenKun/ComfyUI-WinPortable-XPU[ComfyUI-WinPortable-XPU] - 适配 Intel GPU 的 ComfyUI Windows 整合包
 * https://github.com/YanWenKun/ComfyUI-Docker[ComfyUI-Docker] - 运行 ComfyUI 的容器镜像

@@ -158,4 +158,5 @@ Explore my other projects:
 * https://github.com/YanWenKun/Comfy3D-WinPortable[Comfy3D-WinPortable] - Run ComfyUI-3D-Pack on Windows.
 * https://github.com/YanWenKun/StableFast3D-WinPortable[StableFast3D-WinPortable] - Run SF3D on Windows.
 * https://github.com/YanWenKun/ComfyUI-Windows-Portable[ComfyUI-Windows-Portable] - A ComfyUI bundle with 40+ custom nodes.
+* https://github.com/YanWenKun/ComfyUI-WinPortable-XPU[ComfyUI-WinPortable-XPU] - A ComfyUI bundle for Intel GPUs.
 * https://github.com/YanWenKun/ComfyUI-Docker[ComfyUI-Docker] - Run ComfyUI in containers.
