@@ -1,4 +1,5 @@
 ConfigArgParse
+diso
 facexlib
 fastapi
 gevent
@@ -6,7 +7,7 @@ geventhttpclient
 gradio
 gradio_litmodel3d
 ipdb
-mmgp
+mmgp==3.2.7
 ninja
 numpy
 pybind11
@@ -16,7 +17,7 @@ pytorch-lightning
 sentencepiece
 taming-transformers-rom1504
 tqdm
-transformers
+transformers==4.49.0
 trimesh
 tritonclient
 uvicorn
