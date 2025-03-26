@@ -22,6 +22,10 @@ curl -sSL https://github.com/git-for-windows/git/releases/download/v2.49.0.windo
 unzip -q MinGit.zip -d "$workdir"/Hunyuan3D2_WinPortable/MinGit
 rm MinGit.zip
 
+# Download Scripts
+cd "$workdir"/Hunyuan3D2_WinPortable/
+$gcs https://github.com/YanWenKun/Hunyuan3D-2-WinPortable-Scripts.git WinScripts
+
 # Download Hunyuan3D-2
 cd "$workdir"/Hunyuan3D2_WinPortable/
 $gcs https://github.com/YanWenKun/Hunyuan3D-2.git
