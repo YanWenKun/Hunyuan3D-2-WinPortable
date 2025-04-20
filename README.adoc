@@ -56,7 +56,14 @@ Other options:
 
 image::docs/sc-textured-mesh.webp["Screenshot"]
 
-Generating textures requires a few additional steps.
+This approach generates both mesh and textures, requiring more VRAM and additional installation steps.
+
+[NOTE]
+====
+Please complete all steps from the previous section _How to Use - Generate Shape Only_ first, 
+then exit the program before proceeding with the following steps.
+====
+
 
 . Requirements:
 ** NVIDIA GPU with at least 8GB of VRAM (6GB may work but will be very slow). 
@@ -100,7 +107,7 @@ Other options:
 
 * Use `run-very_low_vram.bat` if your GPU has less than 8GB VRAM.
 
-* Use `run-high_vram.bat`if your GPU has 24GB+ VRAM.
+* Use `run-high_vram.bat` if your GPU has 24GB+ VRAM.
 
 ## How to use - Multi View to 3D
 
