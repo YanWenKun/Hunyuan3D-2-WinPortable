@@ -68,7 +68,7 @@ image::docs/sc-textured-mesh.webp["Screenshot"]
 ** 系统内存不低于 24GB。
 
 . 安装
-https://developer.nvidia.com/cuda-12-4-1-download-archive?target_os=Windows&target_arch=x86_64&target_version=11&target_type=exe_network[CUDA Toolkit 12.4.1]
+https://developer.nvidia.com/cuda-12-8-1-download-archive?target_os=Windows&target_arch=x86_64&target_version=11&target_type=exe_network[CUDA Toolkit 12.8.1]
 
 ** 安装时仅需要选择
 https://github.com/YanWenKun/Comfy3D-WinPortable/raw/refs/heads/main/docs/cuda-toolkit-install-selection.webp[Libraries 与 Compilers]
@@ -76,7 +76,7 @@ https://github.com/YanWenKun/Comfy3D-WinPortable/raw/refs/heads/main/docs/cuda-t
 ** 其他版本（ 
 https://developer.nvidia.com/cuda-12-6-3-download-archive[12.6]
 或
-https://developer.nvidia.com/cuda-12-8-1-download-archive[12.8]
+https://developer.nvidia.com/cuda-12-4-1-download-archive[12.4]
 ）亦可正常工作，如已安装，无需再装不同版本。
 
 . 安装 Visual Studio Build Tools 2022
@@ -164,6 +164,9 @@ https://github.com/deepbeepmeep/mmgp#usage[mmgp 文档]。
 ** 运行 `更新.bat`。
 ** 代码仓库并非使用混元 3Dv2 的官方仓库，而是我维护的一个
 https://github.com/YanWenKun/Hunyuan3D-2[专门分支]
+（以及单独的
+https://github.com/YanWenKun/Hunyuan3D-2-WinPortable-Scripts[脚本仓库]
+）
 ，个人精力有限，可能无法第一时间同步官方更新，但会保证先测再发。
 
 . 配置代理：
