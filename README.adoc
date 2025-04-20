@@ -7,24 +7,36 @@ A dedicated package for running
 https://github.com/Tencent/Hunyuan3D-2[Hunyuan3D 2.0]
 Gradio Web App (official demo) on Windows.
 
+Integrated
+https://github.com/deepbeepmeep/mmgp[mmgp]
+from
+https://github.com/deepbeepmeep/Hunyuan3D-2GP[Hunyuan3D-2GP]
+made by
+https://github.com/deepbeepmeep[DeepBeepMeep],
+allowing models to run on consumer-grade GPUs.
+
 ## How to Use - Generate Shape Only
 
 image::docs/sc-white-mesh.webp["Screenshot"]
 
-The simplest way to experience Hunyuan3D-2.
-Input an image, and you'll get a 3D model (white mesh).
+This approach creates a 3D mesh (untextured) from a single image, featuring straightforward steps and no extra software dependencies. Beginners please complete this step first before moving on to more advanced usage.
 
 . Requirements:
 ** NVIDIA GPU with at least 6GB of VRAM (4GB may work but will be very slow). 
 ** GPU driver version must be newer than March 2024 (version >550).
 
 . Download
-https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v1/Hunyuan3D2_WinPortable.7z[Hunyuan3D2_WinPortable.7z]
+https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v2/Hunyuan3D2_WinPortable.7z[Hunyuan3D2_WinPortable.7z]
 and extract it to a convenient location.
 
-. Run `2-download-models.bat` and wait for the download to complete (~26GB).
+** Or check for newer versions at
+https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases[releases page].
 
-. Run `3-run.bat`, ignore error messages about `EP Error`. Wait for the info message:
+. Run `0-initialize.bat` and wait. If updates fail, simply rerun to continue.
+
+. Run `2-download-models.bat` and wait for the download to complete (~19GB).
+
+. Run `3-start.bat`, ignore error messages about `EP Error`. Wait for the info message:
 
  Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
 
@@ -32,11 +44,13 @@ and extract it to a convenient location.
 
 . Output files will be saved in `Hunyuan3D-2\gradio_cache`.
 
+. You can close the command window to stop the program.
+
 Other options:
 
 * If your GPU has less than 6GB VRAM, use `run-very_low_vram.bat`.
 
-* If you want to generate textures as well, see the instructions below.
+* If your GPU has 24GB+ VRAM, run `run-high_vram.bat` for better performance.
 
 ##  How to Use - Generate Shape and Texture
 
@@ -46,7 +60,6 @@ Generating textures requires a few additional steps.
 
 . Requirements:
 ** NVIDIA GPU with at least 8GB of VRAM (6GB may work but will be very slow). 
-** GPU driver version must be newer than March 2024 (version >550).
 ** Minimum 24GB of system RAM.
 
 . Install 
@@ -55,6 +68,12 @@ https://developer.nvidia.com/cuda-12-4-1-download-archive?target_os=Windows&targ
 ** Only
 https://github.com/YanWenKun/Comfy3D-WinPortable/raw/refs/heads/main/docs/cuda-toolkit-install-selection.webp[Libraries and Compilers]
 are needed to install.
+
+** Other versions ( 
+https://developer.nvidia.com/cuda-12-6-3-download-archive[12.6]
+or
+https://developer.nvidia.com/cuda-12-8-1-download-archive[12.8]
+) should work as well. You don't need to install additional if you already have one.
 
 . Install Visual Studio Build Tools 2022
 (
@@ -65,18 +84,9 @@ https://aka.ms/vs/17/release/vs_BuildTools.exe[EXE]
 
 ** During setup, select the "Desktop development with C++" workload.
 
-. Download and extract 
-https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v1/Hunyuan3D2_WinPortable.7z[Hunyuan3D2_WinPortable.7z].
-Or check for newer versions at
-https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases[releases page].
-
-. Run `update.bat` to ensure you have the latest code.
-
 . Run `1-compile-install-texture-gen.bat`, wait for the installation to finish.
 
-. Run `2-download-models.bat` to download necessary models (~26GB).
-
-. Run `3-run.bat`. When ready, the following message will appear:
+. Run `3-start.bat`. When ready, the following message will appear:
 
  Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
 
@@ -84,11 +94,47 @@ https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases[releases page].
 
 . Open http://localhost:8080/ in your browser.
 
-. Output files will be saved in `Hunyuan3D-2\gradio_cache`.
+. Output files will be saved in `Hunyuan3D-2\gradio_cache` as well.
 
 Other options:
 
 * Use `run-very_low_vram.bat` if your GPU has less than 8GB VRAM.
+
+* Use `run-high_vram.bat`if your GPU has 24GB+ VRAM.
+
+## How to use - Multi View to 3D
+
+image::docs/sc-mv.webp["Screenshot"]
+
+This method generates 3D models with textures using 1 to 4 fixed viewpoint images. The official example uses front-back-left views, while users may optionally add the right view for four-viewpoint model generation.
+
+The process offers two working modes:
+
+1. "Gen Shape" (generates untextured mesh)
+
+2. "Gen Textured Shape"
+
+** Note: The texture generation feature requires the same setup steps described in the previous section "How to Use - Generate Shape and Texture".
+
+If you've successfully run texture generation in the previous step, simply:
+
+1. Exit the program
+
+2. Run `4-start-mv.bat`
+
+Additional options:
+
+* For GPUs with ≥24GB VRAM: Use `run-mv-high_vram.bat` for better performance.
+
+## How to use - API Server
+
+This method launches a local server to enable API access for external applications (e.g. Blender) to utilize the model's capabilities.
+
+* Same setup procedure as described in "How to Use - Generate Shape and Texture".
+
+* Run `5-start-api-server.bat` and wait for loading.
+
+** (Optional) To change ports: Modify the `--port 8081` parameter in the file.
 
 ## How to use - Text to 3D
 
@@ -111,15 +157,15 @@ By the way, the HunyuanDiT model works great for this purpose.
 
 . The "Remove Background" feature uses `rembg` with default settings, which may leave faint white edges. Turn it off if your images already have clean alpha channels.
 
-. I have 24GB VRAM! Let the app use more!
+. The VRAM optimization in this package came from 
+https://github.com/deepbeepmeep[DeepBeepMeep]'s 
+https://github.com/deepbeepmeep/Hunyuan3D-2GP[Hunyuan3D-2GP] project.
+For VRAM/RAM requirements of different profile levels, see the 
+https://github.com/deepbeepmeep/mmgp#usage[mmgp documentation].
 
-** Edit `run-very_low_vram.bat`, replace `--profile 5` with `--profile 1`.
-** Beneath this argument, is the
-https://github.com/deepbeepmeep/Hunyuan3D-2GP[Hunyuan3D-2GP]
-made by
-https://github.com/deepbeepmeep[DeepBeepMeep].
-** You can find more detail about profile level on
-https://github.com/deepbeepmeep/mmgp#usage[mmgp manual].
+** Very-low VRAM mode: `--profile 5`
+** Default mode: `--profile 4` 
+** High VRAM mode: `--profile 1` (requires 48GB RAM + 24GB VRAM)
 
 . To update:
 
