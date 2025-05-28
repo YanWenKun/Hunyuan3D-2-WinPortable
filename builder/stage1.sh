@@ -15,7 +15,7 @@ ls -lahF
 # Download Python Standalone
 cd "$workdir"
 curl -sSL \
-https://github.com/astral-sh/python-build-standalone/releases/download/20250409/cpython-3.12.10+20250409-x86_64-pc-windows-msvc-install_only.tar.gz \
+https://github.com/astral-sh/python-build-standalone/releases/download/20250521/cpython-3.12.10+20250521-x86_64-pc-windows-msvc-install_only.tar.gz \
     -o python.tar.gz
 tar -zxf python.tar.gz
 mv python python_standalone
@@ -26,6 +26,7 @@ $pip_exe install --upgrade pip wheel setuptools
 $pip_exe install -r "$workdir"/pak2.txt
 $pip_exe install -r "$workdir"/pak3.txt
 $pip_exe install -r "$workdir"/pak4.txt
+$pip_exe install -r "$workdir"/pak5.txt
 
 $pip_exe list
 

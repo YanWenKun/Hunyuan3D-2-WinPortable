@@ -1,6 +1,5 @@
 fastapi
 gradio
-mmgp==3.2.7
 ninja
 numpy
 pybind11
