@@ -5,6 +5,7 @@ numpy
 pybind11
 pygltflib
 pymeshlab
+sentencepiece
 tqdm
 transformers==4.49.0
 trimesh
