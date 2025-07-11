@@ -3,6 +3,7 @@ aiohttp
 diffusers
 einops
 huggingface-hub[hf-transfer]
+kornia
 omegaconf
 onnx
 onnxruntime-gpu
@@ -10,4 +11,6 @@ opencv-contrib-python-headless
 pygit2
 rembg[gpu]
 safetensors
+scikit-image
+scikit-learn
 scipy
