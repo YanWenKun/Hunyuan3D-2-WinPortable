@@ -17,7 +17,7 @@ mkdir -p "${HF_HUB_CACHE}"
 mv  "$workdir"/python_standalone  "$workdir"/Hunyuan3D2_WinPortable/python_standalone
 
 # Add MinGit (Portable Git)
-curl -sSL https://github.com/git-for-windows/git/releases/download/v2.49.0.windows.1/MinGit-2.49.0-64-bit.zip \
+curl -sSL https://github.com/git-for-windows/git/releases/download/v2.50.1.windows.1/MinGit-2.50.1-64-bit.zip \
     -o MinGit.zip
 unzip -q MinGit.zip -d "$workdir"/Hunyuan3D2_WinPortable/MinGit
 rm MinGit.zip
