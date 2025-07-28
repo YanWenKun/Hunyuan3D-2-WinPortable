@@ -31,7 +31,7 @@ https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v3.3/Huny
 以及
 https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v3.3/Hunyuan3D2_WinPortable.7z.002[Hunyuan3D2_WinPortable.7z.002]
 并解压到一个方便的地方（最好目录不要太深）。
-** 需要下载完两个文件后再解压，它们是一个大包分卷压缩成了两个小包。
+** 需要下载完两个文件后再解压，它们是一个大压缩包“分卷压缩”成了两个文件。
 ** 只需打开 `001` 并解压即可，无需再打开 `002` 文件。解压软件可使用
 https://www.7-zip.org/[7-Zip] 。
 
