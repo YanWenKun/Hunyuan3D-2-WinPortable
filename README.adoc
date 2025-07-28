@@ -34,9 +34,9 @@ and extract.
 https://www.7-zip.org/[7-Zip] or similar software,
 and extract it to a convenient location. You don't need to open the `002` file again.
 
-. If you are using Volta, Pascal (GTX 10xx) or Maxwell (GTX 9xx) GPU,
-download and extract the previous version:
-https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v2/Hunyuan3D2_WinPortable.7z[Hunyuan3D2_WinPortable.7z]
+. If you are using a GPU with older architecture like Volta (TITAN V), Pascal (GTX 1080), or Maxwell (GTX 980),
+download the compatible version instead of the files above:
+https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v2/Hunyuan3D2_WinPortable.7z[Hunyuan3D2_WinPortable.7z (compatible cu124)]
 
 ** Or check for other versions at
 https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases[releases page].
