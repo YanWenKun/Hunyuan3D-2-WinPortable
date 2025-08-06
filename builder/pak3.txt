@@ -2,7 +2,7 @@ accelerate
 aiohttp
 diffusers
 einops
-huggingface-hub[hf-transfer]
+huggingface-hub[hf-transfer,cli]
 kornia
 omegaconf
 onnx

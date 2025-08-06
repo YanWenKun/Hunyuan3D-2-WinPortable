@@ -12,10 +12,11 @@ pygltflib
 pymeshlab
 pytorch-lightning
 sentencepiece
-taming-transformers-rom1504
+#taming-transformers-rom1504
 tqdm
-transformers==4.49.0
+#transformers==4.49.0
+transformers
 trimesh
-tritonclient
+#tritonclient
 uvicorn
 xatlas
