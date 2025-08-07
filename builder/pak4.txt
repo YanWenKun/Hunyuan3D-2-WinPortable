@@ -3,7 +3,7 @@ facexlib
 fastapi
 gevent
 geventhttpclient
-gradio
+gradio==5.25.2
 ipdb
 ninja
 numpy
