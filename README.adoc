@@ -23,20 +23,11 @@ This approach creates a 3D mesh (untextured) from a single image, featuring stra
 
 . Requirements:
 ** NVIDIA GPU with at least 6GB of VRAM (4GB may work but will be very slow). 
-** GPU driver version must be newer than January 2025 (version >570).
+** GPU driver version must be newer than March 2024 (version >550).
 
 . Download
-https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v3.3/Hunyuan3D2_WinPortable.7z.001[Hunyuan3D2_WinPortable.7z.001],
-https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v3.3/Hunyuan3D2_WinPortable.7z.002[Hunyuan3D2_WinPortable.7z.002]
-and extract.
-** Make sure to download both files, they are one package split into two parts.
-** To extract, open the `001` file with
-https://www.7-zip.org/[7-Zip] or similar software,
-and extract it to a convenient location. You don't need to open the `002` file again.
-
-. If you are using a GPU with older architecture like Volta (TITAN V), Pascal (GTX 1080), or Maxwell (GTX 980),
-download the compatible version instead of the files above:
-https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v2/Hunyuan3D2_WinPortable.7z[Hunyuan3D2_WinPortable.7z (compatible cu124)]
+https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v2/Hunyuan3D2_WinPortable.7z[Hunyuan3D2_WinPortable.7z]
+and extract it to a convenient location.
 
 ** Or check for other versions at
 https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases[releases page].
@@ -79,14 +70,17 @@ then exit the program before proceeding with the following steps.
 ** Minimum 24GB of system RAM.
 
 . Install 
-https://developer.nvidia.com/cuda-12-9-1-download-archive?target_os=Windows&target_arch=x86_64&target_version=11&target_type=exe_network[CUDA Toolkit 12.9.1].
+https://developer.nvidia.com/cuda-12-4-1-download-archive?target_os=Windows&target_arch=x86_64&target_version=11&target_type=exe_network[CUDA Toolkit 12.4.1].
 
 ** Only
 https://github.com/YanWenKun/Comfy3D-WinPortable/raw/refs/heads/main/docs/cuda-toolkit-install-selection.webp[Libraries and Compilers]
 are needed to install.
 
 ** Other versions ( 
-https://developer.nvidia.com/cuda-12-8-1-download-archive[12.8]
+https://developer.nvidia.com/cuda-12-6-3-download-archive[12.6],
+https://developer.nvidia.com/cuda-12-8-1-download-archive[12.8],
+https://developer.nvidia.com/cuda-12-9-1-download-archive[12.9], or even
+https://developer.nvidia.com/cuda-13-0-0-download-archive[13.0]
 ) should work as well. You don't need to install additional if you already have one.
 
 . Install Visual Studio Build Tools 2022
