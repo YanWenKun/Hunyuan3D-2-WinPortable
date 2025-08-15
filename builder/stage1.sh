@@ -27,6 +27,7 @@ $pip_exe install -r "$workdir"/pak2.txt
 $pip_exe install -r "$workdir"/pak3.txt
 $pip_exe install -r "$workdir"/pak4.txt
 $pip_exe install -r "$workdir"/pak5.txt
+$pip_exe install -r "$workdir"/pak6.txt
 
 $pip_exe list
 

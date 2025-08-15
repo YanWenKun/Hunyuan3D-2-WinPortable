@@ -1,2 +1,17 @@
-mmgp==3.5.10
-#triton-windows
+# For HY3D-2.1
+basicsr
+bpy
+cupy-cuda12x
+deepspeed
+imageio
+open3d
+pandas
+psutil
+pydantic
+pythreejs
+pyyaml
+realesrgan
+tb_nightly
+timm
+torchdiffeq
+torchmetrics
