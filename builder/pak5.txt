@@ -1,2 +1,2 @@
-mmgp==3.5.6
+mmgp==3.5.10
 #triton-windows
