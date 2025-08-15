@@ -1,6 +1,5 @@
---index-url https://download.pytorch.org/whl/cu126
+--index-url https://download.pytorch.org/whl/cu129
 --extra-index-url https://pypi.org/simple
-xformers==0.0.29.post3
-torch==2.6.0
-torchvision==0.21.0
-torchaudio==2.6.0
+xformers==0.0.32.post2
+torch==2.8.0
+torchvision==0.23.0
