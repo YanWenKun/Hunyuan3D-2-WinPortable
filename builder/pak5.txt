@@ -2,7 +2,7 @@
 basicsr
 #bpy
 cupy-cuda12x
-deepspeed
+#deepspeed
 imageio
 open3d
 pandas
