@@ -35,7 +35,8 @@ $gcs https://github.com/YanWenKun/Hunyuan3D-2.1.git
 
 mkdir -p "$workdir"/Hunyuan3D2_WinPortable/Hunyuan3D-2.1/hy3dpaint/ckpt
 cd "$workdir"/Hunyuan3D2_WinPortable/Hunyuan3D-2.1/hy3dpaint/ckpt
-curl -sSL https://github.com/xinntao/Real-ESRGAN/releases/download/v0.1.0/RealESRGAN_x4plus.pth -O RealESRGAN_x4plus.pth
+curl -sSL https://github.com/xinntao/Real-ESRGAN/releases/download/v0.1.0/RealESRGAN_x4plus.pth \
+    -o RealESRGAN_x4plus.pth
 
 # Copy & overwrite attachments
 cp -rf "$workdir"/attachments/. \
