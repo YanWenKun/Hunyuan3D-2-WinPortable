@@ -2,7 +2,7 @@
 setlocal
 chcp 65001
 
-set "target_dir=WinScripts"
+set "target_dir=WinScripts-GUI"
 
 set PATH=%PATH%;%~dp0\MinGit\cmd;%~dp0\python_standalone\Scripts
 
