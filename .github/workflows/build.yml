@@ -34,7 +34,7 @@ jobs:
             # You don't need to configure this token. It'll be auto-set when GitHub Actions start.
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           with:
-            file: "builder/Hunyuan3D2_WinPortable.7z*"
+            file: "builder/*.7z*"
             # Always draft before release.
             draft: true
             overwrite: true
