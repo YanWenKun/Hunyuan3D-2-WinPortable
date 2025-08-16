@@ -1,6 +1,6 @@
 # For HY3D-2.1
 basicsr
-bpy
+#bpy
 cupy-cuda12x
 #deepspeed
 imageio
