@@ -29,7 +29,7 @@ $gcs https://github.com/YanWenKun/Hunyuan3D-2-WinPortable-Scripts-GUI.git WinScr
 
 # Download Hunyuan3D-2
 cd "$workdir"/Hunyuan3D2_WinPortable/
-$gcs https://github.com/Tencent-Hunyuan/Hunyuan3D-2.git Hunyuan3D-2-original
+$gcs https://github.com/Tencent-Hunyuan/Hunyuan3D-2.git Hunyuan3D-2-vanilla
 $gcs https://github.com/YanWenKun/Hunyuan3D-2.git
 $gcs https://github.com/YanWenKun/Hunyuan3D-2.1.git
 
