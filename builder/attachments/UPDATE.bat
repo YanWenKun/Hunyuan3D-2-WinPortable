@@ -1,5 +1,6 @@
 @echo off
 setlocal enabledelayedexpansion
+chcp 65001
 
 :: --- 1. Environment Setup & Checks ---
 :: Add embedded Git and Python to the temporary PATH

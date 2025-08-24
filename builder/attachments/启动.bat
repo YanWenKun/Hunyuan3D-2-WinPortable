@@ -1,5 +1,6 @@
 @echo on
 setlocal
+chcp 65001
 
 set PATH=%PATH%;%~dp0\MinGit\cmd;%~dp0\python_standalone\Scripts
 
