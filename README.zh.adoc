@@ -64,7 +64,8 @@ https://github.com/pytorch/pytorch/releases/tag/v2.8.0[PyTorch]
 ** https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v4-cu126/Hunyuan3D2_WinPortable_cu126.7z.002[Hunyuan3D2_WinPortable_cu126.7z.002]
 
 * 将两个文件下载完成后，放在同一目录下，打开 `001` 并解压即可。
-** 解压目录尽量浅，比如 `C:\AI\HY3D2`，以免路径过长（触发 MAX_PATH 260）导致报错。
+** 解压路径最好是纯英文/数字，且无空格。
+** 解压路径尽量浅，比如 `C:\AI\HY3D2`，以免路径过长（触发 MAX_PATH 260）导致报错。
 ** 无需再打开 `002` 文件，解压软件在解压 `001` 时已自动处理。它们是一个大压缩包“分卷压缩”成了两个文件。
 ** 解压软件可使用 https://www.7-zip.org/[7-Zip] 。
 
