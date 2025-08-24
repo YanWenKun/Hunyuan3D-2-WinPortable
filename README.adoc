@@ -1,10 +1,21 @@
 [.text-center]
 English | *link:README.zh.adoc[中文说明]*
 
-# Hunyuan3D-2 Windows Portable
+# Hunyuan3D 2.0/2.1 Windows Portable Pack
+
+image::docs/hy3d2-mv.webp["Screenshot"]
+
+[cols="3*", frame=none, grid=none]
+|===
+a|image::docs/hy3d2-turbo-tex.webp[]
+a|image::docs/hy3d21-shape.webp[]
+a|image::docs/hy3d21-tex.webp[]
+|===
 
 A dedicated package for running
-https://github.com/Tencent/Hunyuan3D-2[Hunyuan3D 2.0]
+https://github.com/Tencent-Hunyuan/Hunyuan3D-2[Hunyuan3D 2.0]
+and
+https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1[Hunyuan3D 2.1]
 Gradio Web App (official demo) on Windows.
 
 Integrated
@@ -13,191 +24,183 @@ from
 https://github.com/deepbeepmeep/Hunyuan3D-2GP[Hunyuan3D-2GP]
 made by
 https://github.com/deepbeepmeep[DeepBeepMeep],
-allowing models to run on consumer-grade GPUs.
+allowing the models to run on consumer-grade GPUs.
 
-## How to Use - Generate Shape Only
+## Instructions - Preparation
 
-image::docs/sc-white-mesh.webp["Screenshot"]
+### 1. Basic Requirements
 
-This approach creates a 3D mesh (untextured) from a single image, featuring straightforward steps and no extra software dependencies. Beginners please complete this step first before moving on to more advanced usage.
+** NVIDIA GPU with driver version ≥576.57 (i.e., after June 2025).
+** ≥ 3 GB VRAM for geometry generation (with maximum optimization for 2.1 model)
+** ≥ 6 GB VRAM for texture generation (with maximum optimization for 2.0 model)
+** ≥ 24 GB System RAM (the less VRAM you have, the more RAM is needed for model offloading)
 
-. Requirements:
-** NVIDIA GPU with at least 6GB of VRAM (4GB may work but will be very slow). 
-** GPU driver version must be newer than March 2024 (version >550).
+### 2. Download the Pack Based on Your GPU Architecture
 
-. Download
-https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v2/Hunyuan3D2_WinPortable.7z[Hunyuan3D2_WinPortable.7z]
-and extract it to a convenient location.
+[cols="1,1,1,1,1,1,1,1", options="header"]
+|===
+| GPU Architecture | Blackwell | Ada Lovelace | Ampere | Turing | Volta | Pascal | Maxwell
 
-** Or check for other versions at
-https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases[releases page].
+| Example GPU
+| RTX 5090 | RTX 4090 | RTX 3090 | RTX 2080 | TITAN V | GTX 1080 | GTX 980
 
-. Run `0-initialize.bat` and wait. If updates fail, simply rerun to continue.
+| CUDA 12.9
+| ✔️ | ✔️ | ✔️ | ✔️ | ❌ | ❌ | ❌
 
-. Run `2-download-models.bat` and wait for the download to complete (~19GB).
+| CUDA 12.6
+| ❌ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️
+|===
 
-. Run `3-start.bat`, ignore error messages about `EP Error`. Wait for the info message:
+__ Note: This CUDA compatibility limitation comes from
+https://github.com/pytorch/pytorch/releases/tag/v2.8.0[PyTorch]
+and is not related to NVIDIA CUDA Toolkit. __
 
- Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+* Download for CUDA 12.9:
+** https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v4-cu129/Hunyuan3D2_WinPortable_cu129.7z.001[Hunyuan3D2_WinPortable_cu129.7z.001]
+** https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v4-cu129/Hunyuan3D2_WinPortable_cu129.7z.002[Hunyuan3D2_WinPortable_cu129.7z.002]
 
-. Open http://localhost:8080/ in your browser. Enjoy!
+* Download for CUDA 12.6:
+** https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v4-cu126/Hunyuan3D2_WinPortable_cu126.7z.001[Hunyuan3D2_WinPortable_cu126.7z.001]
+** https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v4-cu126/Hunyuan3D2_WinPortable_cu126.7z.002[Hunyuan3D2_WinPortable_cu126.7z.002]
 
-. Output files will be saved in `Hunyuan3D-2\gradio_cache`.
+* After downloading `001` and `002` files, place them in the same directory, then open and extract the `001` file.
+** Extract to a shallow directory path, such as `C:\AI\HY3D2`, to avoid errors caused by long paths (exceeding the MAX_PATH limit of 260 characters).
+** You do not need to open the `002` file. The extraction software will automatically handle it when decompressing the `001` file. They are two parts of a single large archive created using "split compression".
+** You can use https://www.7-zip.org/[7-Zip] for extraction.
 
-. You can close the command window to stop the program.
+* You can also check the
+https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases[Releases page]
+for other versions.
 
-Other options:
+### 3. (Optional) Enable Developer Mode
 
-* If your GPU has less than 6GB VRAM, use `run-very_low_vram.bat`.
+image::docs/developer-mode-dialog.en.webp["Developer Mode"]
 
-* If your GPU has 24GB+ VRAM, run `run-high_vram.bat` for better performance.
+Search for "Developer settings" in the Start Menu, or go to Settings -> System -> For developers, and enable "Developer Mode".
 
-##  How to Use - Generate Shape and Texture
+This mode enables the file system's symbolic link (symlink) feature, which prevents the Hugging Face Hub from repeatedly downloading model files and causing the model storage directory to become excessively large.
 
-image::docs/sc-textured-mesh.webp["Screenshot"]
+### 4. (Optional) Install Tools for Texture Generation
 
-This approach generates both mesh and textures, requiring more VRAM and additional installation steps.
+If you do not install the following tools, the program can still generate mesh ("shape" or "white model"), but it will not be able to generate textures.
 
-[NOTE]
-====
-Please complete all steps from the previous section _How to Use - Generate Shape Only_ first, 
-then exit the program before proceeding with the following steps.
-====
+. Install
+https://developer.nvidia.com/cuda-12-9-1-download-archive?target_os=Windows&target_arch=x86_64&target_version=11&target_type=exe_network[CUDA Toolkit 12.9.1]
 
+** During installation, you only need to select
+https://github.com/YanWenKun/Comfy3D-WinPortable/raw/refs/heads/main/docs/cuda-toolkit-install-selection.webp[Libraries and Compilers].
 
-. Requirements:
-** NVIDIA GPU with at least 8GB of VRAM (6GB may work but will be very slow). 
-** Minimum 24GB of system RAM.
-
-. Install 
-https://developer.nvidia.com/cuda-12-4-1-download-archive?target_os=Windows&target_arch=x86_64&target_version=11&target_type=exe_network[CUDA Toolkit 12.4.1].
-
-** Only
-https://github.com/YanWenKun/Comfy3D-WinPortable/raw/refs/heads/main/docs/cuda-toolkit-install-selection.webp[Libraries and Compilers]
-are needed to install.
-
-** Other versions ( 
-https://developer.nvidia.com/cuda-12-6-3-download-archive[12.6],
-https://developer.nvidia.com/cuda-12-8-1-download-archive[12.8],
-https://developer.nvidia.com/cuda-12-9-1-download-archive[12.9], or even
+** Other versions (e.g., 
 https://developer.nvidia.com/cuda-13-0-0-download-archive[13.0]
-) should work as well. You don't need to install additional if you already have one.
+) should theoretically work fine, and there is no need to reinstall if you already have one.
 
 . Install Visual Studio Build Tools 2022
 (
-https://visualstudio.microsoft.com/visual-cpp-build-tools/[Page]
+https://visualstudio.microsoft.com/visual-cpp-build-tools/[Download page]
 |
-https://aka.ms/vs/17/release/vs_BuildTools.exe[EXE]
-).
+https://aka.ms/vs/17/release/vs_BuildTools.exe[Installer]
+)
 
-** During setup, select the "Desktop development with C++" workload.
-
-. Run `1-compile-install-texture-gen.bat`, wait for the installation to finish.
-
-. Run `3-start.bat`. When ready, the following message will appear:
-
- Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
-
-** If you see `EP Error: Can't load TensorRT`, the app will automatically fallback to CUDA. This error can be safely ignored.
-
-. Open http://localhost:8080/ in your browser.
-
-. Output files will be saved in `Hunyuan3D-2\gradio_cache` as well.
-
-Other options:
-
-* Use `run-very_low_vram.bat` if your GPU has less than 8GB VRAM.
-
-* Use `run-high_vram.bat` if your GPU has 24GB+ VRAM.
-
-## How to use - Multi View to 3D
-
-image::docs/sc-mv.webp["Screenshot"]
-
-This method generates 3D models with textures using 1 to 4 fixed viewpoint images. The official example uses front-back-left views, while users may optionally add the right view for four-viewpoint model generation.
-
-The process offers two working modes:
-
-1. "Gen Shape" (generates untextured mesh)
-
-2. "Gen Textured Shape"
-
-** Note: The texture generation feature requires the same setup steps described in the previous section "How to Use - Generate Shape and Texture".
-
-If you've successfully run texture generation in the previous step, simply:
-
-1. Exit the program
-
-2. Run `4-start-mv.bat`
-
-Additional options:
-
-* For GPUs with ≥24GB VRAM: Use `run-mv-high_vram.bat` for better performance.
-
-## How to use - API Server
-
-This method launches a local server to enable API access for external applications (e.g. Blender) to utilize the model's capabilities.
-
-* Same setup procedure as described in "How to Use - Generate Shape and Texture".
-
-* Run `5-start-api-server.bat` and wait for loading.
-
-** (Optional) To change ports: Modify the `--port 8081` parameter in the file.
-
-## How to use - Text to 3D
-
-image::docs/sc-text-to-3d.webp["Screenshot"]
-
-The Text to 3D feature combines:
-(1) Text to Image
-(2) Image to 3D.
-For an experienced user, it might not be worth downloading another Text-to-Image model. Therefore, this feature is disabled by default. However, you can easily enable it:
-
-* After the `2-download-models.bat` script completes, run `run-with-text_to_3d.bat`. 
-This will download the required models (~13.4GB) and start the app. 
-If the download fails, simply re-run the script.
-
-* Texture Generation feature is optional for Text-to-3D. You can always get a white mesh without installing texgen.
-
-By the way, the HunyuanDiT model works great for this purpose.
-
-## Tips
-
-. The "Remove Background" feature uses `rembg` with default settings, which may leave faint white edges. Turn it off if your images already have clean alpha channels.
-
-. The VRAM optimization in this package came from 
-https://github.com/deepbeepmeep[DeepBeepMeep]'s 
-https://github.com/deepbeepmeep/Hunyuan3D-2GP[Hunyuan3D-2GP] project.
-For VRAM/RAM requirements of different profile levels, see the 
-https://github.com/deepbeepmeep/mmgp#usage[mmgp documentation].
-
-** Very-low VRAM mode: `--profile 5`
-** Default mode: `--profile 4` 
-** High VRAM mode: `--profile 1` (requires 48GB RAM + 24GB VRAM)
-
-. To update:
-
-** Run `UPDATE.bat`.
-** Note: This package uses a
-https://github.com/YanWenKun/Hunyuan3D-2[customized fork] of Hunyuan3D 2.0, and a 
-https://github.com/YanWenKun/Hunyuan3D-2-WinPortable-Scripts[scripts repo],
-both maintained by me, which might not always be up-to-date.
-
-. Need to set a proxy for Internet access?
-
-** Add the following lines on top to any script you run into issues with, adjusting for your proxy server:
-
-```
-set HTTP_PROXY=http://localhost:1080
-set HTTPS_PROXY=http://localhost:1080
-
-```
+** In the installer, select the "Desktop development with C++" workload.
 
 
-## Thanks
+## Instructions - Launcher
 
-* Special thanks to the researchers, developers, and all contributors of
-https://github.com/Tencent/Hunyuan3D-2[Hunyuan3D 2.0].
+image::docs/launcher.en.png["Launcher"]
+
+. Double-click `RUN.bat` to run the launcher.
+
+. If you check "Enable Texture Generation", the necessary dependencies for this feature will be automatically compiled and installed on the first launch, which may take longer.
+
+. Model files will be downloaded on demand when the program starts.
+
+. After the message `running on http://0.0.0.0:8080` appears, open http://localhost:8080/ in your browser.
+
+. You can force quit the program by closing the command line window.
+
+
+## Instructions - Program Selection
+
+. Hunyuan3D 2.0: Corresponds to the `Hunyuan3D-2` folder. Generated files are in its `gradio_cache` subdirectory.
+
+. Hunyuan3D 2.0 Official Code: Corresponds to the `Hunyuan3D-2-vanilla` folder. Generated files are in its `gradio_cache` subdirectory.
+** Does not use mmgp optimizations. It requires more VRAM but generates faster.
+** Available model references:
+** https://huggingface.co/tencent/Hunyuan3D-2/tree/main
+** https://huggingface.co/tencent/Hunyuan3D-2mini/tree/main
+** https://huggingface.co/tencent/Hunyuan3D-2mv/tree/main
+** Third-party fine-tuned models should theoretically work but have not been tested.
+
+. Hunyuan3D 2.1: Corresponds to the `Hunyuan3D-2.1` folder. Generated files are in its `save_dir` subdirectory.
+
+. API 2.0: Corresponds to the `Hunyuan3D-2` folder, includes partial mmgp VRAM optimizations.
+
+. API 2.1: Corresponds to the `Hunyuan3D-2.1` folder, does not include mmgp VRAM optimizations.
+** Available model references:
+** https://huggingface.co/tencent/Hunyuan3D-2.1/tree/main
+
+
+## Usage Tips
+
+. To view 3D files like `glb` and `obj`, you can use
+https://github.com/cnr-isti-vclab/meshlab/releases[MeshLab].
+
+. After checking "Use Turbo Model", you can still select Fast or Standard mode in the web UI to improve generation quality.
+
+. The "Remove Background" feature uses `rembg` with its default settings, which might leave faint white edges. If your image already has a clean (alpha/transparent) background, there is no need to check this option.
+
+. "Developer Mode" can be turned off at any time.
+
+
+## Advanced Information
+
+. The "Text-to-3D" feature uses the
+https://huggingface.co/Tencent-Hunyuan/HunyuanDiT-v1.1-Diffusers-Distilled[HunyuanDiT-v1.1-Diffusers-Distilled]
+text-to-image model.
+
+. For the specific meaning of each mmgp optimization level, please refer to the
+https://github.com/deepbeepmeep/mmgp#usage[mmgp documentation]
+.
+
+. For process control and batch generation, consider using
+https://www.comfy.org[ComfyUI]. Refer to its
+https://docs.comfy.org/tutorials/3d/hunyuan3D-2[example workflow],
+and be aware of its functional limitations.
+
+. For more advanced usage, it is recommended to write Python scripts with the help of AI and run them using this portable pack. The entire generation process has many adjustable parameters, and scripts can offer a more streamlined and flexible approach.
+
+. This pack does not include `bpy` (Headless Blender) because the packaging CI could not install it in its environment. Its main purpose in the code is to convert 3D file formats, but its absence has not affected the software's usability.
+
+
+## Related Repositories
+
+The following code repositories were bundled in this pack:
+
+[cols="2"]
+|===
+|Official 2.0 Repository
+|https://github.com/Tencent-Hunyuan/Hunyuan3D-2
+
+|2.0 with mmgp integration
+|https://github.com/YanWenKun/Hunyuan3D-2
+
+|2.1 with mmgp integration and Windows adaptation
+|https://github.com/YanWenKun/Hunyuan3D-2.1
+
+|Scripts for legacy versions
+|https://github.com/YanWenKun/Hunyuan3D-2-WinPortable-Scripts
+
+|Scripts for the latest version
+|https://github.com/YanWenKun/Hunyuan3D-2-WinPortable-Scripts-GUI
+|===
+
+
+## Acknowledgements
+
+* Special thanks to all the researchers, developers, and community contributors of
+https://github.com/Tencent-Hunyuan/Hunyuan3D-2[Hunyuan3D 2.0]
+and
+https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1[Hunyuan3D 2.1]
 
 * Kudos to
 https://github.com/deepbeepmeep[DeepBeepMeep]
@@ -205,7 +208,8 @@ for creating
 https://github.com/deepbeepmeep/mmgp[mmgp]
 and
 https://github.com/deepbeepmeep/Hunyuan3D-2GP[Hunyuan3D-2GP],
-bringing Hunyuan3D 2.0 to less-capable GPUs.
+bringing Hunyuan3D 2 to less-capable GPUs.
+
 
 ## More
 

@@ -41,7 +41,7 @@ https://github.com/deepbeepmeep/Hunyuan3D-2GP[Hunyuan3D-2GP]，
 |===
 | GPU 架构 | Blackwell | Ada Lovelace | Ampere | Turing | Volta | Pascal | Maxwell
 
-| 示例GPU
+| 示例 GPU
 | RTX 5090 | RTX 4090 | RTX 3090 | RTX 2080 | TITAN V | GTX 1080 | GTX 980
 
 | CUDA 12.9
@@ -174,14 +174,11 @@ https://docs.comfy.org/tutorials/3d/hunyuan3D-2[样例工作流]
 
 ## 相关仓库
 
-本整合包在构建时使用了如下代码仓库：
+本整合包在构建时打包了以下仓库，在此列出以便开发者查找：
 
 [cols="2"]
 |===
-|本仓库
-|https://github.com/YanWenKun/Hunyuan3D-2-WinPortable
-
-|官方仓库
+|官方 2.0 仓库
 |https://github.com/Tencent-Hunyuan/Hunyuan3D-2
 
 |整合了 mmgp 的 2.0
