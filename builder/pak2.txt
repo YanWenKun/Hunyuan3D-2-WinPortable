@@ -1,4 +1,4 @@
---index-url https://download.pytorch.org/whl/cu129
+--index-url https://download.pytorch.org/whl/cu126
 --extra-index-url https://pypi.org/simple
 xformers==0.0.32.post2
 torch==2.8.0
