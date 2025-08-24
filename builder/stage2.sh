@@ -27,7 +27,7 @@ cd "$workdir"/Hunyuan3D2_WinPortable/
 $gcs https://github.com/YanWenKun/Hunyuan3D-2-WinPortable-Scripts.git WinScripts-Legacy
 $gcs https://github.com/YanWenKun/Hunyuan3D-2-WinPortable-Scripts-GUI.git WinScripts-GUI
 
-# Download Hunyuan3D-2
+# Download Hunyuan3D-2.x repos
 cd "$workdir"/Hunyuan3D2_WinPortable/
 $gcs https://github.com/Tencent-Hunyuan/Hunyuan3D-2.git Hunyuan3D-2-vanilla
 $gcs https://github.com/YanWenKun/Hunyuan3D-2.git
