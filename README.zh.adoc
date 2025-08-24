@@ -176,23 +176,26 @@ https://docs.comfy.org/tutorials/3d/hunyuan3D-2[样例工作流]
 
 本整合包在构建时使用了如下代码仓库：
 
-* https://github.com/YanWenKun/Hunyuan3D-2-WinPortable
-** 本仓库
+[cols="2"]
+|===
+|本仓库
+|https://github.com/YanWenKun/Hunyuan3D-2-WinPortable
 
-* https://github.com/Tencent-Hunyuan/Hunyuan3D-2
-** 官方仓库
+|官方仓库
+|https://github.com/Tencent-Hunyuan/Hunyuan3D-2
 
-* https://github.com/YanWenKun/Hunyuan3D-2
-** 整合了 mmgp 的 2.0
+|整合了 mmgp 的 2.0
+|https://github.com/YanWenKun/Hunyuan3D-2
 
-* https://github.com/YanWenKun/Hunyuan3D-2.1
-** 整合了 mmgp 并适配 Windows 的 2.1
+|整合了 mmgp 并适配 Windows 的 2.1
+|https://github.com/YanWenKun/Hunyuan3D-2.1
 
-* https://github.com/YanWenKun/Hunyuan3D-2-WinPortable-Scripts
-** 旧版本使用的运行脚本
+|旧版本使用的运行脚本
+|https://github.com/YanWenKun/Hunyuan3D-2-WinPortable-Scripts
 
-* https://github.com/YanWenKun/Hunyuan3D-2-WinPortable-Scripts-GUI
-** 新版本使用的运行脚本
+|新版本使用的运行脚本
+|https://github.com/YanWenKun/Hunyuan3D-2-WinPortable-Scripts-GUI
+|===
 
 
 ## 感谢
