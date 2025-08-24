@@ -1,10 +1,21 @@
-# 混元 3D 2.0 Windows 整合包
+# 混元 3D 2.0/2.1 Windows 整合包
+
+image::docs/hy3d2-mv.webp["Screenshot"]
+
+[cols="3*", frame=none, grid=none]
+|===
+a|image::docs/hy3d2-turbo-tex.webp[]
+a|image::docs/hy3d21-shape.webp[]
+a|image::docs/hy3d21-tex.webp[]
+|===
 
 [.text-center]
 中文 | link:README.adoc[English]
 
 用于在 Windows 上运行 
-https://github.com/Tencent/Hunyuan3D-2[混元 3D 2.0]
+https://github.com/Tencent-Hunyuan/Hunyuan3D-2[混元 3D 2.0]
+以及
+https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1[混元 3D 2.1]
 官方 demo (Gradio App) 的整合包。
 
 整合了
@@ -13,72 +24,75 @@ https://github.com/deepbeepmeep[DeepBeepMeep]
 https://github.com/deepbeepmeep/mmgp[mmgp]
 以及
 https://github.com/deepbeepmeep/Hunyuan3D-2GP[Hunyuan3D-2GP]，
-使得模型可以在显存紧张的消费级显卡上运行。
+使得模型可以在显存有限的消费级显卡上运行。
 
-## 使用方法 - 仅生成几何
+## 使用说明 - 准备工作
 
-image::docs/sc-white-mesh.webp["Screenshot"]
+### 1. 基本需求
 
-该方法使用单张图片生成三维模型（白模），操作步骤较为简单，无需额外安装软件。建议所有用户先从该步骤开始，待运行成功后，再进一步尝试其他用法。
+** NVIDIA GPU，驱动版本 ≥576.57（即 2025 年 6 月后）。
+** 生成几何需 ≥ 3 GB 显存（2.1 模型最大优化）
+** 生成纹理需 ≥ 6 GB 显存（2.0 模型最大优化）
+** 系统内存需 ≥ 24 GB（显存越小，需要的内存越大，以供模型卸载）
 
-. 基本需求：
+### 2. 根据 GPU 架构下载整合包
 
-** NVIDIA GPU，最少 6GB 显存（4GB 也许能用，但会很慢）；
-** 显卡驱动版本不低于 550 （即 2024 年 3 月后）。
+[cols="1,1,1,1,1,1,1,1", options="header"]
+|===
+| GPU 架构 | Blackwell | Ada Lovelace | Ampere | Turing | Volta | Pascal | Maxwell
 
-. 下载
-https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v2/Hunyuan3D2_WinPortable.7z[Hunyuan3D2_WinPortable.7z]
-并解压到一个方便的地方（最好目录不要太深）。
+| 示例GPU
+| RTX 5090 | RTX 4090 | RTX 3090 | RTX 2080 | TITAN V | GTX 1080 | GTX 980
 
-** 也可在
+| CUDA 12.9
+| ✔️ | ✔️ | ✔️ | ✔️ | ❌ | ❌ | ❌
+
+| CUDA 12.6
+| ❌ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️
+|===
+
+__ 注：这里的 CUDA 兼容性限制来自
+https://github.com/pytorch/pytorch/releases/tag/v2.8.0[PyTorch]
+，与 NVIDIA 无关。 __
+
+* CUDA 12.9 版本下载：
+** https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v4-cu129/Hunyuan3D2_WinPortable_cu129.7z.001[Hunyuan3D2_WinPortable_cu129.7z.001]
+** https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v4-cu129/Hunyuan3D2_WinPortable_cu129.7z.002[Hunyuan3D2_WinPortable_cu129.7z.002]
+
+* CUDA 12.6 版本下载：
+** https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v4-cu126/Hunyuan3D2_WinPortable_cu126.7z.001[Hunyuan3D2_WinPortable_cu126.7z.001]
+** https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases/download/v4-cu126/Hunyuan3D2_WinPortable_cu126.7z.002[Hunyuan3D2_WinPortable_cu126.7z.002]
+
+* 将两个文件下载完成后，放在同一目录下，打开 `001` 并解压即可。
+** 解压目录尽量浅，比如 `C:\AI\HY3D2`，以免路径过长（触发 MAX_PATH 260）导致报错。
+** 无需再打开 `002` 文件，解压软件在解压 `001` 时已自动处理。它们是一个大压缩包“分卷压缩”成了两个文件。
+** 解压软件可使用 https://www.7-zip.org/[7-Zip] 。
+
+* 也可在
 https://github.com/YanWenKun/Hunyuan3D-2-WinPortable/releases[发布页]
 查看其他版本。
 
-. 运行 `0-初始化.bat`，等待更新完成。如果更新失败，重新运行该脚本可继续。
+### 3. 启用开发人员模式
 
-. 运行 `2-下载模型.bat`，等待下载完成（约 19GB）。如果下载失败，重新运行该脚本可继续。
+image::docs/developer-mode-dialog.zh.webp["开发人员模式"]
 
-. 运行 `3-启动.bat`，忽略报错信息，等待启动完成的信息：
+在开始菜单中搜索“开发人员模式”，或进入设置-系统-开发者选项，启用“开发人员模式”。
 
- Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+该模式会启用文件系统的符号链接（symlink）功能，避免 HuggingFace Hub 重复下载模型文件，导致模型存储目录过大。
 
-. 浏览器打开 http://localhost:8080/ ，即可开始使用！
+### 4. （可选）安装纹理生成所需工具
 
-. 输出的图片、网格文件保存在 `Hunyuan3D-2\gradio_cache` 目录下。
-
-. 要想关闭程序，关闭命令行窗口即可。
-
-其他选项：
-
-* 如果你的显存不足 6GB，运行 `运行_超低显存模式.bat`。
-
-* 如果你的显存达到 24GB，运行 `运行_大显存模式.bat` 以提升速度。
-
-## 使用方法 - 生成几何与纹理
-
-image::docs/sc-textured-mesh.webp["Screenshot"]
-
-该方法不仅生成白模，还会生成纹理，对硬件要求更高，而且需要额外安装步骤。
-
-请先完成上一节《使用方法 - 仅生成几何》的操作步骤，退出程序后再进行以下步骤。
-
-. 硬件需求：
-
-** NVIDIA GPU，最少 8GB 显存；
-** 系统内存不低于 24GB。
+如果不安装下列工具，程序仍然可以生成几何（白模），只是无法生成纹理。
 
 . 安装
-https://developer.nvidia.com/cuda-12-4-1-download-archive?target_os=Windows&target_arch=x86_64&target_version=11&target_type=exe_network[CUDA Toolkit 12.4.1]
+https://developer.nvidia.com/cuda-12-9-1-download-archive?target_os=Windows&target_arch=x86_64&target_version=11&target_type=exe_network[CUDA Toolkit 12.9.1]
 
 ** 安装时仅需要选择
 https://github.com/YanWenKun/Comfy3D-WinPortable/raw/refs/heads/main/docs/cuda-toolkit-install-selection.webp[Libraries 与 Compilers]
 
 ** 其他版本（ 
-https://developer.nvidia.com/cuda-12-6-3-download-archive[12.6] /
-https://developer.nvidia.com/cuda-12-8-1-download-archive[12.8] /
-https://developer.nvidia.com/cuda-12-9-1-download-archive[12.9] / 乃至
 https://developer.nvidia.com/cuda-13-0-0-download-archive[13.0]
-）亦可正常工作，如已安装，无需再装不同版本。
+）理论上可正常工作，无需重复安装。
 
 . 安装 Visual Studio Build Tools 2022
 （
@@ -89,103 +103,104 @@ https://aka.ms/vs/17/release/vs_BuildTools.exe[安装程序]
 
 ** 在安装界面选择“桌面C++开发”。
 
-. 运行 `1-编译安装纹理生成功能.bat`，等待编译安装完成。
 
-. 运行 `3-启动.bat`，忽略报错信息，等待启动完成的信息：
+## 使用说明 - 启动器
 
- Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+image::docs/launcher.zh.png["Launcher"]
 
-** 对于 20 系之前的显卡，会提示 `EP Error: Can't load TensorRT`，忽略即可，程序找不到 Tensor 执行会自动改用 CUDA 执行。
+. 双击 `启动.bat` 即可运行启动器。
 
-. 浏览器打开 http://localhost:8080/
+. 如果勾选了“启用纹理生成功能”，在启动时会自动编译安装功能所需的依赖，因而第一次启动会较慢。
 
-. 输出的文件同样保存在 `Hunyuan3D-2\gradio_cache` 目录下。
+. 模型文件会在程序启动时按需下载。
 
-其他选项：
+. 等待启动完成的信息 `running on http://0.0.0.0:8080` 出现后，浏览器打开 http://localhost:8080/ 即可。
 
-* 如果你的显存不足 8GB，运行 `运行_超低显存模式.bat`，6GB 勉强能跑，会非常慢。
+. 关闭命令行窗口可强制退出程序。
 
-* 如果你的显存达到 24GB，运行 `运行_大显存模式.bat` 以提升速度。
 
-## 使用方法 - 通过多视图生成
+## 使用说明 - 程序选择
 
-image::docs/sc-mv.webp["Screenshot"]
+. 混元 3D 2.0：对应 `Hunyuan3D-2` 文件夹，生成的文件在其 `gradio_cache` 下。
 
-该方法通过 1~4 个固定视角图片来生成 3D 模型与材质，官方示例使用了前-后-左三视角，用户可以额外添加右视角，以四视角生成模型。
+. 混元 3D 2.0 官方代码：对应 `Hunyuan3D-2-vanilla` 文件夹，生成的文件在其 `gradio_cache` 下。
+** 未使用 mmgp 优化，显存需求较高，但生成的速度也较快。
+** 可选模型参考：
+** https://huggingface.co/tencent/Hunyuan3D-2/tree/main
+** https://huggingface.co/tencent/Hunyuan3D-2mini/tree/main
+** https://huggingface.co/tencent/Hunyuan3D-2mv/tree/main
+** 理论上第三方微调后的模型也能用，但未测试。
 
-同时，该方法也分“仅生成白模”与“生成白模与纹理”两种工作模式，纹理功能同样需要前置的编译安装步骤，具体步骤与上一节《使用方法 - 生成几何与纹理》完全一致。
+. 混元 3D 2.1：对应 `Hunyuan3D-2.1` 文件夹，生成的文件在其 `save_dir` 下。
 
-如你已在上一节成功运行纹理生成，只需退出程序，再运行 `4-启动_MV多视图.bat` 即可。
+. API 2.0：对应 `Hunyuan3D-2` 文件夹，含部分 mmgp 显存优化。
 
-其他选项：
+. API 2.1：对应 `Hunyuan3D-2.1` 文件夹，不含 mmgp 显存优化。
+** 可选模型参考：
+** https://huggingface.co/tencent/Hunyuan3D-2.1/tree/main
 
-* 如果你的显存达到 24GB，运行 `运行_MV多视图_大显存模式` 以提升速度。
 
-## 使用方法 - API 服务
+## 使用技巧
 
-该方法将启动一个服务器，以便其他程序（比如 Blender）通过 API 调用模型功能。
+. 查看 glb, obj 等 3D 文件可使用
+https://github.com/cnr-isti-vclab/meshlab/releases[MeshLab]
+。
 
-* 前置步骤与《使用方法 - 生成几何与纹理》相同，如不需纹理，则参照《使用方法 - 仅生成几何》即可。
+. 勾选“使用 Turbo 模型”后，依然可以在网页选用 Fast 或 Standard 模式以提高生成质量。
 
-* 运行 `5-启动_API服务模式.bat`，等待启动完毕。
+. 移除背景（Remove Background）功能使用的是 `rembg` 且使用默认的抠图模型，可能会生成轻微白边。如果你的图片本身已经抠干净背景了，就没必要勾选这个功能了。
 
-** 如需修改端口，编辑该文件中 `--port 8081` 部分即可。
+. “开发人员模式”可随时关闭。
 
-## 使用方法 - 文本转 3D
+## 进阶说明
 
-image::docs/sc-text-to-3d.webp["Screenshot"]
+. “文生 3D”功能使用的文生图模型为
+https://huggingface.co/Tencent-Hunyuan/HunyuanDiT-v1.1-Diffusers-Distilled[HunyuanDiT-v1.1-Diffusers-Distilled]
+。
 
-文生 3D 的原理是先文生图，再图生 3D。对于有经验的用户而言，可能没有必要再下载一个文生图模型，因此默认不启用该功能。
+. mmgp 各优化等级的具体含义可以参考
+https://github.com/deepbeepmeep/mmgp#usage[mmgp 文档]
+。
 
-但 HunyuanDiT 文-图-3D 组合效果其实不错，而且支持中文输入。
+. 过程控制/批量生成可以考虑使用
+https://www.comfy.org[ComfyUI]
+，参考其
+https://docs.comfy.org/tutorials/3d/hunyuan3D-2[样例工作流]
+，注意其功能限制。
 
-首先运行 `2-下载模型.bat`，再运行 `运行_带文生3D.bat` 即可启动。
+. 更进阶的使用，建议通过 AI 编写 Python 脚本，利用本整合包运行。整个生成流程可调整的参数很多，脚本可以做到更精简、更灵活。
 
-该脚本会额外下载约 13.4GB 的模型，如果下载失败（文件损坏也会使程序加载失败），重新运行该脚本即可。
+. 因打包 CI 无法在其环境内安装，本整合包未包含 `bpy` （Headless Blender）。其在代码中主要用于转换 3D 文件格式，但缺失后并未影响软件使用。
 
-文生 3D 功能与纹理生成功能互相独立，不安装后者也能正常使用。
+## 相关仓库
 
-## 技巧
+本整合包在构建时使用了如下代码仓库：
 
-. 移除背景（Remove Background）功能使用的是 `rembg` （默认配置），可能会生成轻微白边。如果你的图片本身已经抠干净背景了，就没必要勾选这个功能了。
+* https://github.com/YanWenKun/Hunyuan3D-2-WinPortable
+** 本仓库
 
-. 整合包中的显存优化来自于
-https://github.com/deepbeepmeep[DeepBeepMeep]
-所创建的
-https://github.com/deepbeepmeep/Hunyuan3D-2GP[Hunyuan3D-2GP]。
-关于不同等级的 profile 所需显存／内存，参考
-https://github.com/deepbeepmeep/mmgp#usage[mmgp 文档]。
+* https://github.com/Tencent-Hunyuan/Hunyuan3D-2
+** 官方仓库
 
-** 超低显存模式使用 `--profile 5`；
-** 默认 `--profile 4`；
-** 大显存模式使用 `--profile 1`，即 48GB 内存 + 24GB 显存模式。
+* https://github.com/YanWenKun/Hunyuan3D-2
+** 整合了 mmgp 的 2.0
 
-. 如何更新：
+* https://github.com/YanWenKun/Hunyuan3D-2.1
+** 整合了 mmgp 并适配 Windows 的 2.1
 
-** 运行 `更新.bat`。
-** 代码仓库并非使用混元 3Dv2 的官方仓库，而是我维护的一个
-https://github.com/YanWenKun/Hunyuan3D-2[专门分支]
-（以及单独的
-https://github.com/YanWenKun/Hunyuan3D-2-WinPortable-Scripts[脚本仓库]
-）
-，个人精力有限，可能无法第一时间同步官方更新，但会保证先测再发。
+* https://github.com/YanWenKun/Hunyuan3D-2-WinPortable-Scripts
+** 旧版本使用的运行脚本
 
-. 配置代理：
-
-** `中文脚本` 均使用国内镜像（PyPI、HuggingFace、GitHub），理论上无需代理。
-** 如遇到镜像失效的情况，建议先尝试用英文脚本运行，看能否直连，如不行，再在脚本开头添加代理配置：
-
-```
-set HTTP_PROXY=http://localhost:1080
-set HTTPS_PROXY=http://localhost:1080
-
-```
+* https://github.com/YanWenKun/Hunyuan3D-2-WinPortable-Scripts-GUI
+** 新版本使用的运行脚本
 
 
 ## 感谢
 
 * 特别感谢
-https://github.com/Tencent/Hunyuan3D-2[混元 3D 2.0]
+https://github.com/Tencent-Hunyuan/Hunyuan3D-2[混元 3D 2.0]
+和
+https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1[混元 3D 2.1]
 的所有研究者、开发者和社区贡献者
 
 * 特别感谢
@@ -199,8 +214,8 @@ https://github.com/deepbeepmeep/Hunyuan3D-2GP[Hunyuan3D-2GP]，
 * 特别感谢国内镜像站点提供的下载服务：
 ** https://hf-mirror.com
 ** https://mirrors.cernet.edu.cn
-** https://ghfast.top
 ** https://gh-proxy.com
+** https://ghfast.top
 
 ## 顺带一提
 
