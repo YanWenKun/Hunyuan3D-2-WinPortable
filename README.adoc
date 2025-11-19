@@ -108,9 +108,7 @@ https://aka.ms/vs/17/release/vs_BuildTools.exe[Installer]
 
 image::docs/launcher.en.png["Launcher"]
 
-. It is recommended to run `UPDATE.bat` first to avoid the
-https://pypi.org/project/transformers/4.57.1/#history[Transformers]
-issue in October/November 2025.
+. It is recommended to run `UPDATE.bat` first.
 
 . Double-click `RUN.bat` to run the launcher.
 

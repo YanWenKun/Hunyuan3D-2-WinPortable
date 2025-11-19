@@ -109,9 +109,7 @@ https://aka.ms/vs/17/release/vs_BuildTools.exe[安装程序]
 
 image::docs/launcher.zh.png["Launcher"]
 
-. 建议先运行 `更新.bat`，避免 2025 年 10 月 / 11 月的
-https://pypi.org/project/transformers/4.57.1/#history[Transformers]
-Bug。
+. 建议先运行 `更新.bat`。
 
 . 双击 `启动.bat` 即可运行启动器。
 
