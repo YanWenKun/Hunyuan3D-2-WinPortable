@@ -108,6 +108,10 @@ https://aka.ms/vs/17/release/vs_BuildTools.exe[Installer]
 
 image::docs/launcher.en.png["Launcher"]
 
+. It is recommended to run `UPDATE.bat` first to avoid the
+https://pypi.org/project/transformers/4.57.1/#history[Transformers]
+issue in October/November 2025.
+
 . Double-click `RUN.bat` to run the launcher.
 
 . If you check "Enable Texture Generation", the necessary dependencies for this feature will be automatically compiled and installed on the first launch, which may take longer.

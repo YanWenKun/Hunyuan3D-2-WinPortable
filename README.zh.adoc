@@ -109,6 +109,10 @@ https://aka.ms/vs/17/release/vs_BuildTools.exe[安装程序]
 
 image::docs/launcher.zh.png["Launcher"]
 
+. 建议先运行 `更新.bat`，避免 2025 年 10 月 / 11 月的
+https://pypi.org/project/transformers/4.57.1/#history[Transformers]
+Bug。
+
 . 双击 `启动.bat` 即可运行启动器。
 
 . 如果勾选了“启用纹理生成功能”，在启动时会自动编译安装功能所需的依赖，因而第一次启动会较慢。
